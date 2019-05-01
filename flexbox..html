@@ -1,455 +1,521 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"> -->
-	<link rel="stylesheet" href="flexbox.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>flexbox</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="flexbox.css" />
   </head>
+
   <body>
-	<main id="app">
-		<aside id="app-sidebar">
-			<a href="#" class="brand-link text-decoration-none">
-			  <img src="img/logo.jpg" alt="Logo">
-			  <p class="font-weight-bold">Flexbox 3</p>
-			</a>
-			<nav class="nav-sidebar">
-				<ul class="nav nav-pills flex-column" data-widget="treeview" role="menu" data-accordion="false">
-				  <li class="user-panel mb-3">
-					<img src="img/user.jpg" alt="User">
-					<p>Carlos Eduardo Ferrari</p>
-				  </li>
-				  <li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link active">
-					  <i class="nav-icon fas fa-tachometer-alt"></i>
-					  <p>Dashboard</p>
-					  <i class="right fas fa-angle-left"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link active">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Dashboard v1</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Dashboard v2</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Dashboard v3</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-item">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-th"></i>
-					  <p>Widgets</p>
-					  <span class="right badge badge-danger">New</span>
-					</a>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-chart-pie"></i>
-					  <p>Charts</p>
-					  <i class="right fas fa-angle-left"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>ChartJS</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Flot</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Inline</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-tree"></i>
-					  <p>UI Elements</p>
-					  <i class="fas fa-angle-left right"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>General</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Icons</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Buttons</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Sliders</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-edit"></i>
-					  <p>Forms</p>
-					  <i class="fas fa-angle-left right"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>General Elements</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Advanced Elements</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Editors</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-table"></i>
-					  <p>Tables</p>
-					  <i class="fas fa-angle-left right"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Simple Tables</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Data Tables</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-header">EXAMPLES</li>
-				  <li class="nav-item">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-calendar"></i>
-					  <p>Calendar</p>
-					  <span class="badge badge-info right">2</span>
-					</a>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon far fa-envelope"></i>
-					  <p>Mailbox</p>
-					  <i class="fas fa-angle-left right"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Inbox</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Compose</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Read</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-book"></i>
-					  <p>Pages</p>
-					  <i class="fas fa-angle-left right"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Invoice</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Profile</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Login</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Register</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Lockscreen</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon far fa-plus-square"></i>
-					  <p>Extras</p>
-					  <i class="fas fa-angle-left right"></i>
-					</a>
-					<ul class="nav nav-treeview">
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Error 404</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Error 500</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Blank Page</p>
-						</a>
-					  </li>
-					  <li class="nav-item">
-						<a href="#" class="nav-link">
-						  <i class="far fa-circle nav-icon"></i>
-						  <p>Starter Page</p>
-						</a>
-					  </li>
-					</ul>
-				  </li>
-				  <li class="nav-header">MISCELLANEOUS</li>
-				  <li class="nav-item">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon fas fa-file"></i>
-					  <p>Documentation</p>
-					</a>
-				  </li>
-				  <li class="nav-header">LABELS</li>
-				  <li class="nav-item">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon far fa-circle text-danger"></i>
-					  <p class="text">Important</p>
-					</a>
-				  </li>
-				  <li class="nav-item">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon far fa-circle text-warning"></i>
-					  <p>Warning</p>
-					</a>
-				  </li>
-				  <li class="nav-item">
-					<a href="#" class="nav-link">
-					  <i class="nav-icon far fa-circle text-info"></i>
-					  <p>Informational</p>
-					</a>
-				  </li>
-				</ul>
-			</nav>
-		</aside>
-		<section id="app-content">
-			<header id="app-header" class="sticky-top">
-				<button class="btn btn-link rounded-0 sidebar-toggle"><i class="fas fa-bars"></i></button>
-				<button class="btn btn-link rounded-0 sign-out"><i class="fas fa-sign-out-alt"></i></button>
-			</header>
-			<article id="app-body">
-				<div class="card-deck">
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				</div>
-				<div class="card-deck mt-2">
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				</div>
-				<div class="card-deck mt-2">
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				</div>
-				<div class="card-deck mt-2">
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				  <div class="card">
-					<img class="card-img-top" src="img/bootstrap-stack.png" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-					</div>
-					<div class="card-footer">
-					  <small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				  </div>
-				</div>
-			</article>
-			<footer id="app-footer">
-				&nbsp;
-			</footer>
-		</section>
-		<div id="sidebar-overlay"></div>
-	</main>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <main id="app">
+      <aside id="app-sidebar">
+        <a href="#" class="brand-link text-decoration-none">
+          <img src="img/logo.jpg" alt="Logo" />
+          <p class="font-weight-bold">Flexbox 3</p>
+        </a>
+        <nav class="nav-sidebar">
+          <ul class="nav nav-pills flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="user-panel mb-3">
+              <img src="img/user.jpg" alt="User" />
+              <p>Carlos Eduardo Ferrari<br />987300362</p>
+            </li>
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Dashboard</p>
+                <i class="right fas fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v1</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v2</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Dashboard v3</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Widgets</p>
+                <span class="right badge badge-danger">New</span>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>Charts</p>
+                <i class="right fas fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>ChartJS</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Flot</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Inline</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tree"></i>
+                <p>UI Elements</p>
+                <i class="fas fa-angle-left right"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>General</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Icons</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Buttons</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Sliders</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>Forms</p>
+                <i class="fas fa-angle-left right"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>General Elements</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Advanced Elements</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Editors</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>Tables</p>
+                <i class="fas fa-angle-left right"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Simple Tables</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Data Tables</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-header">EXAMPLES</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-calendar"></i>
+                <p>Calendar</p>
+                <span class="badge badge-info right">2</span>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>Mailbox</p>
+                <i class="fas fa-angle-left right"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Inbox</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Compose</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Read</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Pages</p>
+                <i class="fas fa-angle-left right"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Invoice</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Profile</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Login</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Register</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Lockscreen</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-plus-square"></i>
+                <p>Extras</p>
+                <i class="fas fa-angle-left right"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Error 404</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Error 500</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Blank Page</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Starter Page</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-header">MISCELLANEOUS</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p>Documentation</p>
+              </a>
+            </li>
+            <li class="nav-header">LABELS</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-circle text-danger"></i>
+                <p class="text">Important</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-circle text-warning"></i>
+                <p>Warning</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-circle text-info"></i>
+                <p>Informational</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <section id="app-content">
+        <header id="app-header" class="sticky-top">
+          <button class="btn btn-link rounded-0 sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <button class="btn btn-link rounded-0 sign-out">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </header>
+        <article id="app-body">
+          <div class="row">
+            <div class="col-md-12 col-lg-6 mb-4">
+              <div class="card-deck">
+                <div class="card text-white bg-success">
+                  <div class="card-body">
+                    <h3 class="card-title font-weight-bold">245</h5>
+                    <p class="card-text">DAU</p>
+                  </div>
+                </div>
+                <div class="card text-white bg-danger">
+                  <div class="card-body">
+                    <h3 class="card-title font-weight-bold">22,87%</h5>
+                    <p class="card-text">Stickness</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6 mb-4">
+              <div class="card-deck">
+                <div class="card text-white bg-primary">
+                  <div class="card-body">
+                    <h3 class="card-title font-weight-bold">3.642</h5>
+                    <p class="card-text">Transações 30 dias</p>
+                  </div>
+                </div>
+                <div class="card text-white bg-warning">
+                  <div class="card-body">
+                    <h3 class="card-title font-weight-bold">R$ 13.786</h5>
+                    <p class="card-text">Movimentação 30 dias</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-deck">
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This card has supporting text below as a natural lead-in to additional content.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          <div class="card-deck mt-4">
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This card has supporting text below as a natural lead-in to additional content.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          <div class="card-deck mt-4">
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This card has supporting text below as a natural lead-in to additional content.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          <div class="card-deck mt-4">
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This card has supporting text below as a natural lead-in to additional content.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </article>
+        <footer id="app-footer">
+          <div class="col d-flex align-items-center">
+            &copy;&nbsp;<span class="font-weight-bold">2019 Ferrari Soluções.</span>&nbsp;
+            <span class="d-none d-md-inline">Todos os direitos reservados.</span>
+          </div>
+          <button class="btn btn-link rounded-0 back-to-top">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+        </footer>
+      </section>
+      <div id="sidebar-overlay"></div>
+    </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha256-LJkWYMcB83+zN8VO3EnSoNYHiBo93miOF47ZfsPSNDQ=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/css-element-queries/1.1.1/ResizeSensor.min.js" integrity="sha256-GIhZEGpgJ9ZWVrRXClweqgnwRJZNDSGA5Cw1E3GdQeo=" crossorigin="anonymous"></script>
-	<script src="flexbox.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha256-LJkWYMcB83+zN8VO3EnSoNYHiBo93miOF47ZfsPSNDQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-element-queries/1.1.1/ResizeSensor.min.js" integrity="sha256-GIhZEGpgJ9ZWVrRXClweqgnwRJZNDSGA5Cw1E3GdQeo=" crossorigin="anonymous"></script>
+    <script src="flexbox.js"></script>
   </body>
 </html>
