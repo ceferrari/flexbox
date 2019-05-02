@@ -59,6 +59,7 @@
 #app-header button,
 #app-footer button {
   color: #007bff;
+  color: #777;
   width: 3rem;
 }
 
@@ -138,7 +139,6 @@
   align-items: center;
   border-radius: 0.5rem;
   margin-bottom: 0.2rem;
-  margin-right: 0.25rem;
 }
 
 #app-sidebar > .nav-sidebar .nav-item > .nav-link:hover {
@@ -157,24 +157,26 @@
   width: 1.6rem;
 }
 
-#app-sidebar > .nav-sidebar .nav-item > .nav-link .right {
+#app-sidebar > .nav-sidebar .nav-item > .nav-link > .right {
   margin-left: auto;
+  transition: transform ease-in-out 0.5s;
 }
 
-#app-sidebar > .nav-sidebar .nav-treeview {
+#app-sidebar > .nav-sidebar .has-sub > .nav-sub {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
   display: none;
   list-style: none;
   padding: 0;
 }
 
-#app-sidebar > .nav-sidebar .nav-treeview > .nav-item > .nav-link.active,
-#app-sidebar > .nav-sidebar .nav-treeview > .nav-item > .nav-link.active:hover {
+#app-sidebar > .nav-sidebar .has-sub > .nav-sub .nav-link.active {
   color: #343a40;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-#app-sidebar > .nav-sidebar .menu-open > .nav-treeview {
-  display: block;
+#app-sidebar > .nav-sidebar .has-sub.open > .nav-link > .right {
+  transform: rotate(-90deg);
 }
 
 /* Media Queries */

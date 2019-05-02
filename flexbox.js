@@ -26,4 +26,18 @@ $(function() {
       .getNiceScroll()
       .resize();
   });
+
+  $(".has-sub>.nav-link").click(function() {
+    $(".has-sub.open")
+      .not($(this).parent())
+      .removeClass("open")
+      .find(".nav-sub")
+      .slideUp("slow");
+    $(this)
+      .parent()
+      .toggleClass("open");
+    $(this)
+      .next(".nav-sub")
+      .slideToggle("slow");
+  });
 });
