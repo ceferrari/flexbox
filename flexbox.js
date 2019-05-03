@@ -15,7 +15,7 @@ $(function() {
     $("#app").toggleClass("toggled");
   });
 
-  $("#sidebar-overlay").click(function() {
+  $("#app-overlay").click(function() {
     $("#app").removeClass("toggled");
   });
 
@@ -27,17 +27,32 @@ $(function() {
       .resize();
   });
 
-  $(".has-sub>.nav-link").click(function() {
-    $(".has-sub.open")
-      .not($(this).parent())
+  $(".nav-item>.nav-link").click(function() {
+    $(".nav-item.has-sub.open")
+      .not($(this).closest(".has-sub"))
       .removeClass("open")
-      .find(".nav-sub")
+      .children(".nav-sub")
       .slideUp("slow");
-    $(this)
-      .parent()
-      .toggleClass("open");
-    $(this)
-      .next(".nav-sub")
-      .slideToggle("slow");
+    if (
+      $(this)
+        .parent()
+        .hasClass("has-sub")
+    ) {
+      $(this)
+        .parent()
+        .toggleClass("open")
+        .children(".nav-sub")
+        .slideToggle("slow");
+    } else {
+      $(".nav-item>.nav-link.active").removeClass("active");
+      $(this)
+        .addClass("active")
+        .closest(".has-sub")
+        .children(".nav-link")
+        .addClass("active");
+      setTimeout(function() {
+        $("#app").removeClass("toggled");
+      }, 750);
+    }
   });
 });
