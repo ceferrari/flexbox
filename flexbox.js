@@ -11,10 +11,13 @@ $(function() {
       let c2 = (w1 < 1200 && w2 >= 1200) || (w1 > 1200 && w2 <= 1200);
       if (c1 || c2) $("#app").removeClass("toggled");
       w1 = 0;
-    }, 500);
+    }, 250);
   });
 
-  $("#app-sidebar>.nav-sidebar").niceScroll({ horizrailenabled: false });
+  $("#app-sidebar>.nav-sidebar").niceScroll({
+    autohidemode: "leave",
+    horizrailenabled: false
+  });
 
   new ResizeSensor(document.getElementById("app-sidebar"), function() {
     $("#app-sidebar>.nav-sidebar")
@@ -39,7 +42,7 @@ $(function() {
       .not($(this).closest(".has-sub"))
       .removeClass("open")
       .children(".nav-sub")
-      .slideUp("slow");
+      .slideUp();
     if (
       $(this)
         .parent()
@@ -49,7 +52,7 @@ $(function() {
         .parent()
         .toggleClass("open")
         .children(".nav-sub")
-        .slideToggle("slow");
+        .slideToggle();
     } else {
       $(".nav-item>.nav-link.active").removeClass("active");
       $(this)
@@ -57,9 +60,9 @@ $(function() {
         .closest(".has-sub")
         .children(".nav-link")
         .addClass("active");
-      setTimeout(function() {
+      if ($(window).width() < 768) {
         $("#app").removeClass("toggled");
-      }, 0);
+      }
     }
   });
 });

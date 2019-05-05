@@ -1,16 +1,22 @@
 /* Layout */
+html,
+body {
+  overflow: hidden;
+}
+
 #app {
-  height: 100vh;
   display: flex;
+  height: 100vh;
   overflow: hidden;
 }
 
 #app-sidebar {
   background-color: #343a40;
-  flex: 0 0 15rem;
-  transform: translateX(-15rem);
-  transition: all 0.3s ease-in-out;
+  height: 100vh;
   width: 15rem;
+  position: absolute;
+  transform: translateX(-15rem);
+  transition: transform 0.3s linear, width 0.3s linear;
   z-index: 1090;
 }
 
@@ -18,15 +24,15 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  margin-left: -15rem;
   overflow-x: hidden;
   overflow-y: scroll;
-  transition: all 0.3s ease-in-out;
+  transition: margin-left 0.3s linear;
 }
 
 #app-body {
   background-color: #f4f6f9;
   flex: 1 1 auto;
+  padding-top: 1rem;
 }
 
 #app-overlay {
@@ -43,23 +49,18 @@
 #app-footer {
   background-color: #fff;
   display: flex;
-  flex: 0 0 3.5rem;
   justify-content: space-between;
+  flex: 0 0 3.5rem;
 }
 
-#app-header button,
-#app-footer button {
+#app-header a,
+#app-footer a {
   color: #777;
-  width: 3rem;
-}
-
-#app-header button.sign-out,
-#app-footer button.back-to-top {
-  border-left: 1px solid #dee2e6;
-}
-
-#app-header button.sidebar-toggle {
-  border-right: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 3.5rem;
+  text-decoration: none;
 }
 
 #app-header {
@@ -89,9 +90,9 @@
 
 #app-sidebar > .brand-link,
 #app-sidebar .user-link {
+  display: flex;
   align-items: center;
   border-bottom: 1px solid #4b545c;
-  display: flex;
   height: 3.5rem;
 }
 
@@ -99,8 +100,7 @@
 #app-sidebar .user-link > img {
   border-radius: 50%;
   margin-right: 0.75rem;
-  max-height: 2.25rem;
-  width: auto;
+  height: 2.25rem;
 }
 
 #app-sidebar > .brand-link {
@@ -119,26 +119,34 @@
 }
 
 #app-sidebar > .nav-sidebar .nav-header {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   padding: 1.7rem 0 0.5rem 0;
+}
+
+#app-sidebar > .nav-sidebar ul.nav-sub,
+#app-sidebar > .nav-sidebar .nav-item > .nav-link {
+  border-radius: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+#app-sidebar > .nav-sidebar ul.nav-sub > .nav-item:last-child > .nav-link {
+  margin-bottom: 0;
 }
 
 #app-sidebar > .nav-sidebar .nav-item > .nav-link {
   display: flex;
   align-items: center;
-  border-radius: 0.5rem;
-  margin-bottom: 0.2rem;
 }
 
 #app-sidebar > .nav-sidebar .nav-item > .nav-link > .nav-icon {
+  flex: 0 0 1.6rem;
   font-size: 1.1rem;
   margin-right: 0.4rem;
   text-align: center;
-  width: 1.6rem;
 }
 
-#app-sidebar > .nav-sidebar .nav-item > .nav-link .right {
-  margin-left: auto;
+#app-sidebar > .nav-sidebar .has-sub > .nav-link .right {
   transition: transform ease-in-out 0.5s;
 }
 
@@ -148,22 +156,21 @@
 
 /* Sidebar Colors */
 #app-sidebar > .nav-sidebar .nav-item > .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-#app-sidebar > .nav-sidebar :not(.nav-sub) > .nav-item > .nav-link.active {
+#app-sidebar > .nav-sidebar ul:not(.nav-sub) > .nav-item > .nav-link.active {
   background-color: #007bff;
   color: #fff;
 }
 
-#app-sidebar > .nav-sidebar .nav-sub > .nav-item > .nav-link.active {
+#app-sidebar > .nav-sidebar ul.nav-sub > .nav-item > .nav-link.active {
   background-color: rgba(255, 255, 255, 0.9);
   color: #343a40;
 }
 
-#app-sidebar > .nav-sidebar .nav-sub {
-  background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 0.5rem;
+#app-sidebar > .nav-sidebar ul.nav-sub {
+  background-color: rgba(0, 0, 0, 0.25);
   display: none;
 }
 
@@ -184,7 +191,7 @@
   }
 
   #app-content {
-    margin-left: 0;
+    margin-left: 15rem;
   }
 
   #app-body {
@@ -194,32 +201,38 @@
 
 @media (min-width: 768px) and (max-width: 1199.98px) {
   #app:not(.toggled) #app-sidebar {
-    flex: 0 0 4.5rem;
     width: 4.5rem;
   }
 
   #app:not(.toggled) #app-sidebar:hover {
-    flex: 0 0 15rem;
+    width: 15rem;
   }
 
   #app:not(.toggled) #app-sidebar:not(:hover) p {
     margin-left: -1rem;
     opacity: 0;
   }
+
+  #app:not(.toggled) #app-content {
+    margin-left: 4.5rem;
+  }
 }
 
 @media (min-width: 1200px) {
   #app.toggled #app-sidebar {
-    flex: 0 0 4.5rem;
     width: 4.5rem;
   }
 
   #app.toggled #app-sidebar:hover {
-    flex: 0 0 15rem;
+    width: 15rem;
   }
 
   #app.toggled #app-sidebar:not(:hover) p {
     margin-left: -1rem;
     opacity: 0;
+  }
+
+  #app.toggled #app-content {
+    margin-left: 4.5rem;
   }
 }
