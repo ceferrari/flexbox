@@ -11,7 +11,7 @@
   transform: translateX(-15rem);
   transition: all 0.3s ease-in-out;
   width: 15rem;
-  z-index: 1098;
+  z-index: 1090;
 }
 
 #app-content {
@@ -27,7 +27,6 @@
 #app-body {
   background-color: #f4f6f9;
   flex: 1 1 auto;
-  padding: 1.5rem;
 }
 
 #app-overlay {
@@ -36,7 +35,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 1097;
+  z-index: 1080;
 }
 
 /* Header and Footer */
@@ -50,7 +49,6 @@
 
 #app-header button,
 #app-footer button {
-  color: #007bff;
   color: #777;
   width: 3rem;
 }
@@ -60,12 +58,12 @@
   border-left: 1px solid #dee2e6;
 }
 
-#app-header {
-  border-bottom: 1px solid #dee2e6;
-}
-
 #app-header button.sidebar-toggle {
   border-right: 1px solid #dee2e6;
+}
+
+#app-header {
+  border-bottom: 1px solid #dee2e6;
 }
 
 #app-footer {
@@ -73,68 +71,56 @@
 }
 
 /* Sidebar */
-#app-sidebar,
+#app-sidebar .nav,
 #app-sidebar a {
   color: #c2c7d0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 #app-sidebar p {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1;
   margin: 0;
   transition: margin-left 0.3s linear, opacity 0.5s ease;
 }
 
-#app-sidebar > .brand-link {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  padding: 0.5rem 1.2rem;
-}
-
-#app-sidebar > .nav-sidebar .user-panel {
-  font-size: 0.85rem;
-  padding: 0 0.7rem;
-}
-
 #app-sidebar > .brand-link,
-#app-sidebar > .nav-sidebar .user-panel {
+#app-sidebar .user-link {
   align-items: center;
   border-bottom: 1px solid #4b545c;
   display: flex;
   height: 3.5rem;
-  white-space: nowrap;
 }
 
 #app-sidebar > .brand-link > img,
-#app-sidebar .user-panel > img {
+#app-sidebar .user-link > img {
   border-radius: 50%;
   margin-right: 0.75rem;
   max-height: 2.25rem;
   width: auto;
 }
 
+#app-sidebar > .brand-link {
+  font-size: 1.25rem;
+  padding: 0.5rem 1.2rem;
+}
+
+#app-sidebar .user-link {
+  font-size: 0.85rem;
+  padding: 0 0.7rem;
+}
+
 #app-sidebar > .nav-sidebar {
   height: calc(100% - 3.5rem);
   padding: 0 0.5rem;
-  overflow: hidden;
-}
-
-#app-sidebar > .nav-sidebar > .nav {
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-#app-sidebar > .nav-sidebar > .nav li {
-  max-width: 14rem;
 }
 
 #app-sidebar > .nav-sidebar .nav-header {
   font-size: 0.9rem;
   padding: 1.7rem 0 0.5rem 0;
-  text-overflow: clip;
-  white-space: nowrap;
 }
 
 #app-sidebar > .nav-sidebar .nav-item > .nav-link {
@@ -142,15 +128,6 @@
   align-items: center;
   border-radius: 0.5rem;
   margin-bottom: 0.2rem;
-}
-
-#app-sidebar > .nav-sidebar .nav-item > .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-#app-sidebar > .nav-sidebar .nav-item > .nav-link.active {
-  color: #fff;
-  background-color: #007bff;
 }
 
 #app-sidebar > .nav-sidebar .nav-item > .nav-link > .nav-icon {
@@ -165,21 +142,29 @@
   transition: transform ease-in-out 0.5s;
 }
 
-#app-sidebar > .nav-sidebar .has-sub > .nav-sub {
+#app-sidebar > .nav-sidebar .has-sub.open > .nav-link .right {
+  transform: rotate(-90deg);
+}
+
+/* Sidebar Colors */
+#app-sidebar > .nav-sidebar .nav-item > .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#app-sidebar > .nav-sidebar :not(.nav-sub) > .nav-item > .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#app-sidebar > .nav-sidebar .nav-sub > .nav-item > .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #343a40;
+}
+
+#app-sidebar > .nav-sidebar .nav-sub {
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 0.5rem;
   display: none;
-  list-style: none;
-  padding: 0;
-}
-
-#app-sidebar > .nav-sidebar .has-sub > .nav-sub .nav-link.active {
-  color: #343a40;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-#app-sidebar > .nav-sidebar .has-sub.open > .nav-link .right {
-  transform: rotate(-90deg);
 }
 
 /* Media Queries */
@@ -202,8 +187,8 @@
     margin-left: 0;
   }
 
-  #app-header {
-    z-index: 1099;
+  #app-body {
+    padding: 1.5rem;
   }
 }
 
@@ -215,11 +200,10 @@
 
   #app:not(.toggled) #app-sidebar:hover {
     flex: 0 0 15rem;
-    width: 15rem;
   }
 
   #app:not(.toggled) #app-sidebar:not(:hover) p {
-    margin-left: -0.75rem;
+    margin-left: -1rem;
     opacity: 0;
   }
 }
@@ -232,11 +216,10 @@
 
   #app.toggled #app-sidebar:hover {
     flex: 0 0 15rem;
-    width: 15rem;
   }
 
   #app.toggled #app-sidebar:not(:hover) p {
-    margin-left: -0.75rem;
+    margin-left: -1rem;
     opacity: 0;
   }
 }

@@ -1,22 +1,17 @@
 $(function() {
   "use strict";
 
-  $(window).bind("resize", function() {
-    const w = $(this).width();
-    $("#app").removeClass("toggled", w == 768 || w == 1200);
-  });
-
-  $(".back-to-top").click(function() {
-    $("#app-content").animate({ scrollTop: 0 }, "slow");
-    return false;
-  });
-
-  $(".sidebar-toggle").click(function() {
-    $("#app").toggleClass("toggled");
-  });
-
-  $("#app-overlay").click(function() {
-    $("#app").removeClass("toggled");
+  let w1 = 0;
+  $(window).resize(function() {
+    w1 = w1 || $(window).width();
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = setTimeout(function() {
+      let w2 = $(window).width();
+      let c1 = (w1 < 768 && w2 >= 768) || (w1 > 768 && w2 <= 768);
+      let c2 = (w1 < 1200 && w2 >= 1200) || (w1 > 1200 && w2 <= 1200);
+      if (c1 || c2) $("#app").removeClass("toggled");
+      w1 = 0;
+    }, 500);
   });
 
   $("#app-sidebar>.nav-sidebar").niceScroll({ horizrailenabled: false });
@@ -25,6 +20,18 @@ $(function() {
     $("#app-sidebar>.nav-sidebar")
       .getNiceScroll()
       .resize();
+  });
+
+  $(".back-to-top").click(function() {
+    $("#app-content").animate({ scrollTop: 0 }, "slow");
+  });
+
+  $(".sidebar-toggle").click(function() {
+    $("#app").toggleClass("toggled");
+  });
+
+  $("#app-overlay").click(function() {
+    $("#app").removeClass("toggled");
   });
 
   $(".nav-item>.nav-link").click(function() {
@@ -52,7 +59,7 @@ $(function() {
         .addClass("active");
       setTimeout(function() {
         $("#app").removeClass("toggled");
-      }, 750);
+      }, 0);
     }
   });
 });
