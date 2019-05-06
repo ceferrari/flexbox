@@ -11,7 +11,7 @@ $(function() {
       let c2 = (w1 < 1200 && w2 >= 1200) || (w1 > 1200 && w2 <= 1200);
       if (c1 || c2) $("#app").removeClass("toggled");
       w1 = 0;
-    }, 250);
+    }, 300);
   });
 
   $("#app-sidebar>.nav-sidebar").niceScroll({
