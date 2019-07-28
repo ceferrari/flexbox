@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <title>flexbox</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.8.0/css/OverlayScrollbars.min.css" integrity="sha256-Z317z/X6rpDOSSXDx+j3P3AfXkSdJbR3jDhD0lSBb2I=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <style>
       /* IE and Edge compatibility */
@@ -13,69 +14,59 @@
         min-height: 0.01px;
       }
 
-      body {
-        overflow: hidden;
-      }
-
       /* Layout */
-      #app {
-        display: flex;
-        height: 100vh;
-        overflow: hidden;
-      }
-
       #app-sidebar {
         background-color: #343a40;
-        height: 100%;
-        width: 15rem;
-        position: absolute;
+        height: 100vh;
+        position: fixed;
         transform: translateX(-15rem);
-        transition: transform 0.3s linear, width 0.3s linear;
+        transition: transform 0.3s ease-in-out;
+        will-change: transform;
+        width: 15rem;
         z-index: 1090;
       }
 
       #app-content {
         display: flex;
-        flex-direction: column;
         flex: 1 1 auto;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        transition: margin-left 0.3s linear;
+        flex-direction: column;
+        min-height: 100vh;
       }
 
       #app-body {
         background-color: #f4f6f9;
         flex: 1 0 auto;
-        padding-top: 1rem;
+        overflow-x: hidden;
+        padding: 1rem 0;
       }
 
       #app-overlay {
-        background: rgba(0, 0, 0, 0.25);
+        background-color: rgba(0, 0, 0, 0.25);
         display: none;
         position: fixed;
-        top: 0;
+        bottom: 0;
         left: 0;
-        height: 100%;
-        width: 100%;
+        right: 0;
+        top: 0;
         z-index: 1080;
       }
 
       /* Header and Footer */
       #app-header,
       #app-footer {
-        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.35);
         display: flex;
-        justify-content: space-between;
         flex: 0 0 3.5rem;
+        justify-content: space-between;
       }
 
       #app-header a,
       #app-footer a {
         color: #777;
         display: flex;
+        flex: 0 0 3.5rem;
         align-items: center;
         justify-content: center;
-        flex: 0 0 3.5rem;
         text-decoration: none;
       }
 
@@ -101,7 +92,6 @@
         justify-content: space-between;
         flex: 1;
         margin: 0;
-        transition: margin-left 0.3s linear, opacity 0.5s ease;
       }
 
       #app-sidebar > .brand-link,
@@ -192,63 +182,72 @@
 
       /* Media Queries */
       @media (max-width: 767.98px) {
-        #app.toggled #app-sidebar {
-          transform: translateX(0);
+        #app.sidebar-toggled #app-sidebar {
+          transform: none;
         }
 
-        #app.toggled #app-overlay {
+        #app.sidebar-toggled #app-overlay {
           display: block;
         }
       }
 
       @media (min-width: 768px) {
         #app-sidebar {
-          transform: translateX(0);
+          transform: none;
+          /* transition: width 0.3s ease-in-out;
+          will-change: width; */
         }
 
         #app-content {
           margin-left: 15rem;
+          /* transition: margin-left 0.3s ease-in-out;
+          will-change: margin-left; */
         }
 
         #app-body {
           padding: 1.5rem;
         }
+
+        #app-sidebar p {
+          transition: margin-left 0.3s linear, opacity 0.5s ease;
+          will-change: margin-left, opacity;
+        }
       }
 
       @media (min-width: 768px) and (max-width: 1199.98px) {
-        #app:not(.toggled) #app-sidebar {
+        #app:not(.sidebar-toggled) #app-sidebar {
           width: 4.5rem;
         }
 
-        #app:not(.toggled) #app-sidebar:hover {
+        #app:not(.sidebar-toggled) #app-sidebar:hover {
           width: 15rem;
         }
 
-        #app:not(.toggled) #app-sidebar:not(:hover) p {
+        #app:not(.sidebar-toggled) #app-sidebar:not(:hover) p {
           margin-left: -1rem;
           opacity: 0;
         }
 
-        #app:not(.toggled) #app-content {
+        #app:not(.sidebar-toggled) #app-content {
           margin-left: 4.5rem;
         }
       }
 
       @media (min-width: 1200px) {
-        #app.toggled #app-sidebar {
+        #app.sidebar-toggled #app-sidebar {
           width: 4.5rem;
         }
 
-        #app.toggled #app-sidebar:hover {
+        #app.sidebar-toggled #app-sidebar:hover {
           width: 15rem;
         }
 
-        #app.toggled #app-sidebar:not(:hover) p {
+        #app.sidebar-toggled #app-sidebar:not(:hover) p {
           margin-left: -1rem;
           opacity: 0;
         }
 
-        #app.toggled #app-content {
+        #app.sidebar-toggled #app-content {
           margin-left: 4.5rem;
         }
       }
@@ -258,17 +257,17 @@
   <body>
     <main id="app">
       <aside id="app-sidebar">
-        <a href="#" class="brand-link text-decoration-none">
+        <a href="#/" class="brand-link text-decoration-none">
           <img
             src="data:image/jpeg;base64,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"
             alt="Logo"
           />
           <p class="font-weight-bold">Flexbox 3</p>
         </a>
-        <nav class="nav-sidebar">
+        <nav  id="app-sidebar-nav" class="nav-sidebar">
           <ul class="nav flex-column" role="menu">
             <li class="user-item mb-3">
-              <a href="#" class="user-link text-decoration-none">
+              <a href="#/" class="user-link text-decoration-none">
                 <img
                   src="data:image/jpeg;base64,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"
                   alt="User"
@@ -277,136 +276,136 @@
               </a>
             </li>
             <li class="nav-item has-sub open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard<i class="right fas fa-angle-left"></i></p>
+              <a href="#/" class="nav-link active">
+                <i class="nav-icon fas fa-fw fa-tachometer-alt"></i>
+                <p>Dashboard<i class="right fas fa-fw fa-angle-left"></i></p>
               </a>
               <ul class="nav nav-sub" style="display: block">
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link active">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Dashboard v1</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Dashboard v2</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Dashboard v3</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-th"></i>
                 <p>Widgets<span class="right badge badge-danger">New</span></p>
               </a>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>Charts<i class="right fas fa-angle-left"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-chart-pie"></i>
+                <p>Charts<i class="right fas fa-fw fa-angle-left"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>ChartJS</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Flot</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Inline</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tree"></i>
-                <p>UI Elements<i class="fas fa-angle-left right"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-tree"></i>
+                <p>UI Elements<i class="fas fa-fw fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>General</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Icons</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Buttons</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Sliders</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>Forms<i class="fas fa-angle-left right"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-edit"></i>
+                <p>Forms<i class="fas fa-fw fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>General Elements</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Advanced Elements</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Editors</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>Tables<i class="fas fa-angle-left right"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-table"></i>
+                <p>Tables<i class="fas fa-fw fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Simple Tables</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Data Tables</p>
                   </a>
                 </li>
@@ -414,102 +413,102 @@
             </li>
             <li class="nav-header">EXAMPLES</li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-calendar"></i>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-calendar"></i>
                 <p>Calendar<span class="badge badge-info right">2</span></p>
               </a>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
-                <p>Mailbox<i class="fas fa-angle-left right"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon far fa-fw fa-envelope"></i>
+                <p>Mailbox<i class="fas fa-fw fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Inbox</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Compose</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Read</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>Pages<i class="fas fa-angle-left right"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-book"></i>
+                <p>Pages<i class="fas fa-fw fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Invoice</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Profile</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Login</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Register</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Lockscreen</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-sub">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-plus-square"></i>
-                <p>Extras<i class="fas fa-angle-left right"></i></p>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon far fa-fw fa-plus-square"></i>
+                <p>Extras<i class="fas fa-fw fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-sub">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Error 404</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Error 500</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Blank Page</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="#/" class="nav-link">
+                    <i class="far fa-fw fa-circle nav-icon"></i>
                     <p>Starter Page</p>
                   </a>
                 </li>
@@ -517,27 +516,27 @@
             </li>
             <li class="nav-header">MISCELLANEOUS</li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon fas fa-fw fa-file"></i>
                 <p>Documentation</p>
               </a>
             </li>
             <li class="nav-header">LABELS</li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-circle text-danger"></i>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon far fa-fw fa-circle text-danger"></i>
                 <p class="text">Important</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-circle text-warning"></i>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon far fa-fw fa-circle text-warning"></i>
                 <p>Warning</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-circle text-info"></i>
+              <a href="#/" class="nav-link">
+                <i class="nav-icon far fa-fw fa-circle text-info"></i>
                 <p>Informational</p>
               </a>
             </li>
@@ -547,11 +546,14 @@
       </aside>
       <section id="app-content">
         <header id="app-header" class="sticky-top">
-          <a href="#" class="sidebar-toggle">
-            <i class="fas fa-bars"></i>
+          <a href="#/" class="sidebar-toggle">
+            <i class="fas fa-fw fa-bars"></i>
           </a>
-          <a href="#" class="sign-out">
-            <i class="fas fa-sign-out-alt"></i>
+          <a href="#/" class="app-header-title flex-fill">
+            Flexbox 3
+          </a>
+          <a href="#/" class="sign-out">
+            <i class="fas fa-fw fa-filter"></i>
           </a>
         </header>
         <article id="app-body">
@@ -593,7 +595,7 @@
             <div class="col-md-12 col-lg-6">
               <div class="card-deck">
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -605,7 +607,7 @@
                   </div>
                 </div>
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -617,7 +619,7 @@
                   </div>
                 </div>
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -633,7 +635,7 @@
             <div class="col-md-12 col-lg-6">
               <div class="card-deck">
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -645,7 +647,7 @@
                   </div>
                 </div>
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -657,7 +659,7 @@
                   </div>
                 </div>
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -675,7 +677,7 @@
             <div class="col-md-12 col-lg-6">
               <div class="card-deck">
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -687,7 +689,7 @@
                   </div>
                 </div>
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -699,7 +701,7 @@
                   </div>
                 </div>
                 <div class="card mb-3">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -715,7 +717,7 @@
             <div class="col-md-12 col-lg-6">
               <div class="card-deck">
                 <div class="card">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -727,7 +729,7 @@
                   </div>
                 </div>
                 <div class="card">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -739,7 +741,7 @@
                   </div>
                 </div>
                 <div class="card">
-                  <img class="card-img-top" src="img/bootstrap-stack.png" alt="..." />
+                  <img class="card-img-top" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">
@@ -759,19 +761,18 @@
             <span class="font-weight-bold">&copy;&nbsp;2019 Ferrari Soluções.&nbsp;</span>
             <span class="d-none d-md-inline">Todos os direitos reservados.</span>
           </div>
-          <a href="#" class="back-to-top">
-            <i class="fas fa-arrow-up"></i>
+          <a href="#/" class="back-to-top">
+            <i class="fas fa-fw fa-arrow-up"></i>
           </a>
         </footer>
       </section>
       <div id="app-overlay"></div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha256-fTuUgtT7O2rqoImwjrhDgbXTKUwyxxujIMRIK7TbuNU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha256-LJkWYMcB83+zN8VO3EnSoNYHiBo93miOF47ZfsPSNDQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-element-queries/1.1.1/ResizeSensor.min.js" integrity="sha256-GIhZEGpgJ9ZWVrRXClweqgnwRJZNDSGA5Cw1E3GdQeo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.8.0/js/jquery.overlayScrollbars.min.js" integrity="sha256-jfJX5tuQnkxYr9kOa9YJsnDbSxyv5FDMvLFNbMKjiHQ=" crossorigin="anonymous"></script>
     <script>
       $(function() {
         "use strict";
@@ -784,32 +785,29 @@
             let w2 = $(window).width();
             let c1 = (w1 < 768 && w2 >= 768) || (w1 > 768 && w2 <= 768);
             let c2 = (w1 < 1200 && w2 >= 1200) || (w1 > 1200 && w2 <= 1200);
-            if (c1 || c2) $("#app").removeClass("toggled");
+            if (c1 || c2) $("#app").removeClass("sidebar-toggled");
             w1 = 0;
           }, 300);
         });
 
-        $("#app-sidebar>.nav-sidebar").niceScroll({
-          autohidemode: "leave",
-          horizrailenabled: false
-        });
-
-        new ResizeSensor(document.getElementById("app-sidebar"), function() {
-          $("#app-sidebar>.nav-sidebar")
-            .getNiceScroll()
-            .resize();
+        $("#app-sidebar-nav").overlayScrollbars({
+          className: "os-theme-light",
+          scrollbars: {
+            autoHide: "move",
+            visibility: "auto"
+          }
         });
 
         $(".back-to-top").click(function() {
-          $("#app-content").animate({ scrollTop: 0 }, "slow");
+          $("html, body").animate({ scrollTop: 0 }, "slow");
         });
 
         $(".sidebar-toggle").click(function() {
-          $("#app").toggleClass("toggled");
+          $("#app").toggleClass("sidebar-toggled");
         });
 
         $("#app-overlay").click(function() {
-          $("#app").removeClass("toggled");
+          $("#app").removeClass("sidebar-toggled");
         });
 
         $(".nav-item>.nav-link").click(function() {
@@ -836,7 +834,7 @@
               .children(".nav-link")
               .addClass("active");
             if ($(window).width() < 768) {
-              $("#app").removeClass("toggled");
+              $("#app").removeClass("sidebar-toggled");
             }
           }
         });

@@ -9,7 +9,8 @@
   height: 100vh;
   position: fixed;
   transform: translateX(-15rem);
-  transition-duration: 0.3s;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
   width: 15rem;
   z-index: 1090;
 }
@@ -19,7 +20,6 @@
   flex: 1 1 auto;
   flex-direction: column;
   min-height: 100vh;
-  transition-duration: 0.3s;
 }
 
 #app-body {
@@ -33,10 +33,10 @@
   background-color: rgba(0, 0, 0, 0.25);
   display: none;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  right: 0;
+  top: 0;
   z-index: 1080;
 }
 
@@ -81,7 +81,6 @@
   justify-content: space-between;
   flex: 1;
   margin: 0;
-  transition: margin-left 0.3s linear, opacity 0.5s ease;
 }
 
 #app-sidebar > .brand-link,
@@ -173,7 +172,7 @@
 /* Media Queries */
 @media (max-width: 767.98px) {
   #app.sidebar-toggled #app-sidebar {
-    transform: translateX(0);
+    transform: none;
   }
 
   #app.sidebar-toggled #app-overlay {
@@ -183,15 +182,24 @@
 
 @media (min-width: 768px) {
   #app-sidebar {
-    transform: translateX(0);
+    transform: none;
+    /* transition: width 0.3s ease-in-out;
+    will-change: width; */
   }
 
   #app-content {
     margin-left: 15rem;
+    /* transition: margin-left 0.3s ease-in-out;
+    will-change: margin-left; */
   }
 
   #app-body {
     padding: 1.5rem;
+  }
+
+  #app-sidebar p {
+    transition: margin-left 0.3s linear, opacity 0.5s ease;
+    will-change: margin-left, opacity;
   }
 }
 
